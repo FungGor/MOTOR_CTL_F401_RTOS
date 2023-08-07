@@ -1,0 +1,9 @@
+main.c:470:13:startMediumFrequencyTask	1
+main.c:69:6:SystemClock_Config	3
+main.c:31:5:main	21
+main.c:489:6:HAL_TIM_PeriodElapsedCallback	2
+main.c:505:6:Error_Handler	1
+main.c:518:6:Peripheral_DeInit	3
+main.c:532:6:GPIO_WAKEPIN_Init	1
+main.c:565:6:EXTI2_IRQHandler	2
+main.c:607:6:suspend_SystemTask	1

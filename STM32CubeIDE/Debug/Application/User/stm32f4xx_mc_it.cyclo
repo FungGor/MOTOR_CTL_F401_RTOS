@@ -1,0 +1,7 @@
+stm32f4xx_mc_it.c:75:6:ADC_IRQHandler	2
+stm32f4xx_mc_it.c:106:6:TIM1_UP_TIM10_IRQHandler	1
+stm32f4xx_mc_it.c:124:6:TIM1_BRK_TIM9_IRQHandler	2
+stm32f4xx_mc_it.c:147:6:TIM2_IRQHandler	3
+stm32f4xx_mc_it.c:190:6:USART2_IRQHandler	6
+stm32f4xx_mc_it.c:240:6:HardFault_Handler	7
+stm32f4xx_mc_it.c:291:6:EXTI15_10_IRQHandler	2

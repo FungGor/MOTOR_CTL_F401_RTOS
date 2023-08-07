@@ -1,0 +1,9 @@
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/motor_control_protocol.c:165:13:MCP_ReceivedFrame	72	static
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/motor_control_protocol.c:137:13:MCP_WaitNextFrame	8	static
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/motor_control_protocol.c:102:13:MCP_Init	24	static
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/motor_control_protocol.c:127:13:MCP_OnTimeOut	8	static
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/motor_control_protocol.c:152:13:MCP_SentFrame	8	static
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/motor_control_protocol.c:788:13:MCP_SendOverrunMessage	16	static
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/motor_control_protocol.c:799:13:MCP_SendTimeoutMessage	16	static
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/motor_control_protocol.c:810:13:MCP_SendATRMessage	64	static
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/motor_control_protocol.c:851:13:MCP_SendBadCRCMessage	16	static

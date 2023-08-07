@@ -1,0 +1,2 @@
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/freertos.c:65:6:vApplicationGetIdleTaskMemory	4	static
+C:/Users/TerenceLeung/Documents/STM32_Prototyping/MOTOR_CTL_F401_RTOS/MOTOR_CTL_F401_RTOS/Src/freertos.c:78:6:vApplicationGetTimerTaskMemory	4	static
