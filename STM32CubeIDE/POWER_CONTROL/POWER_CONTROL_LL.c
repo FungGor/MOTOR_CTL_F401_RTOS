@@ -88,10 +88,10 @@ static void SYSTEM_POWER_ON()
 	//HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin,GPIO_PIN_SET);
 	power = 1;
 	POWER_PROTOCOL_CHECKSTATUS();
-	if(ESCOOTER_GetReportStatus() == true)
-	{
-		POWER_CHANGE_STATE(POWER_OFF);
-	}
+	//if(ESCOOTER_GetReportStatus() == true)
+	//{
+	//	POWER_CHANGE_STATE(POWER_OFF);
+	//}
 }
 
 static void SYSTEM_INDICATOR_ON()

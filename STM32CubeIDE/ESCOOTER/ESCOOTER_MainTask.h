@@ -16,6 +16,7 @@ extern "C" {
 #include "stdint.h"
 #include "cmsis_os.h"
 
+#define PERIODIC_CAPTURE_TIME 100
 typedef enum
 {
 	DRIVING_IDLE  = 0,  /*EScooter is in standby mode! */
@@ -52,6 +53,8 @@ void ESCOOTER_InputBrakeSignal();
 void ESCOOTER_DEBUG_CancelBrakeSignal();
 
 void ESCOOTER_Stop_Driving_Task();
+
+void ESCOOTER_DRIVING_CONTROL();
 
 void ESCOOTER_StateMachineHighFrequencyTask(void const *argument);
 

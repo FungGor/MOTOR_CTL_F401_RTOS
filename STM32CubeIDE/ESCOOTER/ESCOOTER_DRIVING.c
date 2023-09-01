@@ -27,13 +27,15 @@ void ESCOOTER_Set_Limit(ESCOOTER_BrakeANDThrottleInput *limitHandle)
      modeControl = *limitHandle;
 }
 
+int16_t throttle_Current = 0;
 void ESCOOTER_Driving_Start()
 {
 	HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin,GPIO_PIN_SET);
 	/*Set acceleration ramp*/
+	throttle_Current = modeControl.TARGET_IQ;
 }
 
-void ESCOOTRT_Driving_Stop()
+void ESCOOTER_Driving_Stop()
 {
 	HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin,GPIO_PIN_RESET);
 	/*Stop Motor!*/
@@ -45,7 +47,7 @@ void ESCOOTER_DrivingTaskControl(void const * argument)
      {
            if(Driving_State == DRIVING_IDLE)
            {
-        	   ESCOOTRT_Driving_Stop();
+        	   ESCOOTER_Driving_Stop();
            }
            else if (Driving_State == DRIVING_START)
            {
@@ -53,7 +55,7 @@ void ESCOOTER_DrivingTaskControl(void const * argument)
            }
            else if(Driving_State == DRIVING_STOP)
            {
-        	   ESCOOTRT_Driving_Stop();
+        	   ESCOOTER_Driving_Stop();
            }
      }
 }

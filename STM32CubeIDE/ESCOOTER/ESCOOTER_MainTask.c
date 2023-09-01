@@ -25,21 +25,19 @@ ESCOOTER_BrakeANDThrottleInput inputHandle;
 /*ESboot() must be called when the E-Scooter is turned-on！*/
 void ESboot()
 {
-    opInitHandle.bDrivingState    = DRIVING_IDLE;
-    opInitHandle.BRAKE_Trigger    = false;
-    opInitHandle.THROTTLE_Pressed = false;
-    opInitHandle.need_KICK_OFF    = true;
-    opInitHandle.ESCOOTER_MOVE    = false;
-    opInitHandle.systemError      = false;
+    tempHandle.bDrivingState    = DRIVING_IDLE;
+    tempHandle.BRAKE_Trigger    = false;
+    tempHandle.THROTTLE_Pressed = false;
+    tempHandle.need_KICK_OFF    = true;
+    tempHandle.ESCOOTER_MOVE    = false;
+    tempHandle.systemError      = false;
 
     /*Save the current driving status. IDLE Mode is set in Default*/
     ESCOOTER_saveStatus(opInitHandle.bDrivingState);
 
     /*Create The Task for controlling the E-Scooter Driving Status !!!*/
-    osThreadDef(driving,ESCOOTER_DrivingTaskControl,osPriorityBelowNormal,0,128);
-    opInitHandle.EScooterInDriving = osThreadCreate(osThread(driving),NULL);
-
-    tempHandle = opInitHandle;
+    //osThreadDef(driving,ESCOOTER_DrivingTaskControl,osPriorityBelowNormal,0,128);
+    //opInitHandle.EScooterInDriving = osThreadCreate(osThread(driving),NULL);
 
     /*Initialize the E-Scooter in Ambler Mode*/
     ESCOOTER_DrivingModeSetDefault(&inputHandle);
@@ -69,6 +67,9 @@ void ESCOOTER_InputThrottleSignal(int16_t targetCurrent)
 
 	/*to give the message if the throttle is pressed or not ! */
 	tempHandle.THROTTLE_Pressed = ESCOOTER_ThrottleSignalTrigger(&inputHandle);
+
+	/*Send the Iq signal to the ESCOOTER_DRIVING (?)*/
+	ESCOOTER_Set_Limit(&inputHandle);
 
 }
 
@@ -108,14 +109,29 @@ bool ESCOOTER_IsCarReady()
 
 void ESCOOTER_SendReportStatus(bool error)
 {
-	opInitHandle.systemError = error;
+	tempHandle.systemError = error;
 }
 
 bool ESCOOTER_GetReportStatus()
 {
-    return opInitHandle.systemError;
+    return tempHandle.systemError;
 }
 
+void ESCOOTER_DRIVING_CONTROL()
+{
+	if(ESCOOTER_getStatus() == DRIVING_IDLE)
+	{
+		ESCOOTER_Driving_Stop();
+	}
+	else if (ESCOOTER_getStatus() == DRIVING_START)
+	{
+        ESCOOTER_Driving_Start();
+	}
+	else if (ESCOOTER_getStatus() == DRIVING_STOP)
+	{
+        ESCOOTER_Driving_Stop();
+	}
+}
 /**Control The E-Scooter's Main Task**/
 /*Please check all the functionalities e.g. brake,throttle,parameter inputs carefully before running the High Frequency Task*/
 /*Input some dummy commands -> check it*/
@@ -131,6 +147,7 @@ __weak void ESCOOTER_StateMachineHighFrequencyTask(void const *argument)
            ESCOOTER_saveStatus(tempHandle.bDrivingState);
            /*To verify the state machine for debug purpose, please un-comment the following lines: */
     	   //int32_t status = 0;
+         ESCOOTER_DRIVING_CONTROL();
          if(failure == 0)
          {
              tempHandle.THROTTLE_Pressed = true;
@@ -151,8 +168,8 @@ __weak void ESCOOTER_StateMachineHighFrequencyTask(void const *argument)
             	 tempHandle.ESCOOTER_MOVE = false;
             	 tempHandle.need_KICK_OFF = true;
             	 tempHandle.bDrivingState = DRIVING_IDLE;
-            	 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13,GPIO_PIN_SET);
-            	 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14,GPIO_PIN_RESET);
+            	 //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13,GPIO_PIN_SET);
+            	 //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14,GPIO_PIN_RESET);
             	 ESCOOTER_saveStatus(tempHandle.bDrivingState);
              }
          }
@@ -201,11 +218,19 @@ __weak void ESCOOTER_StateMachineHighFrequencyTask(void const *argument)
 
 /**Check the Motor Parameters Regularly**/
 /*Input some dummy commands -> check it*/
+/*It's better to call this task regularly with specific time interval*/
+uint16_t timer_interval = PERIODIC_CAPTURE_TIME;
+uint16_t task_Counter = 0;
 void ESCOOTER_ParameterMonitoring(void const *argument)
 {
     for(;;)
     {
-    	pstateHandle = ESCOOTER_PhysicalParameterMonitoring(&pstateHandle);
+    	if((task_Counter % 2) == 0)
+    	{
+        	pstateHandle = ESCOOTER_PhysicalParameterMonitoring(&pstateHandle);
+    	}
+    	osDelay(timer_interval);
+    	task_Counter++;
     }
 }
 
@@ -224,11 +249,11 @@ void ESCOOTER_Stop_Driving_Task()
 		ESCOOTER_saveStatus(tempHandle.bDrivingState);
 		HAL_Delay(1500);
 		tempHandle.bDrivingState = DRIVING_IDLE;
-		vTaskSuspend(opInitHandle.EScooterInDriving);
+		//vTaskSuspend(opInitHandle.EScooterInDriving);
 	}
 	else if (ESCOOTER_getStatus() == DRIVING_IDLE)
 	{
-		vTaskSuspend(opInitHandle.EScooterInDriving);
+		//vTaskSuspend(opInitHandle.EScooterInDriving);
 	}
 	//osThreadTerminate(opInitHandle.EScooterInDriving);
 }
