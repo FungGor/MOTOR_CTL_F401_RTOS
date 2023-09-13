@@ -17,7 +17,8 @@ ESCOOTER/ESCOOTER_DRIVING.o: ../ESCOOTER/ESCOOTER_DRIVING.c \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- ../ESCOOTER/ESCOOTER_BrakeAndThrottle.h ../../Inc/mc_api.h \
+ ../ESCOOTER/ESCOOTER_BrakeAndThrottle.h \
+ ../ESCOOTER/ESCOOTER_MonitorTask.h ../../Inc/mc_api.h \
  ../../MCSDK_v5.4.8-Full/MotorControl/MCSDK/MCLib/Any/Inc/mc_type.h \
  ../../Inc/mc_stm_types.h \
  ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_system.h \
@@ -133,6 +134,7 @@ ESCOOTER/ESCOOTER_DRIVING.o: ../ESCOOTER/ESCOOTER_DRIVING.c \
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
 ../ESCOOTER/ESCOOTER_BrakeAndThrottle.h:
+../ESCOOTER/ESCOOTER_MonitorTask.h:
 ../../Inc/mc_api.h:
 ../../MCSDK_v5.4.8-Full/MotorControl/MCSDK/MCLib/Any/Inc/mc_type.h:
 ../../Inc/mc_stm_types.h:

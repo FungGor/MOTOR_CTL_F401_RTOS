@@ -16,12 +16,15 @@ extern "C" {
 #include "stdbool.h"
 #include "ESCOOTER_MainTask.h"
 #include "ESCOOTER_BrakeAndThrottle.h"
+#include "ESCOOTER_MonitorTask.h"
 
 void ESCOOTER_saveStatus (uint8_t state);
 
-ESCOOTER_Driving_State ESCOOTER_getStatus();
+ESCOOTER_Driving_State_t ESCOOTER_getStatus();
 
-void ESCOOTER_Set_Limit(ESCOOTER_BrakeANDThrottleInput *limitHandle);
+void ESCOOTER_Set_Limit(ESCOOTER_BrakeANDThrottleInput_t *limitHandle);
+
+void ESCOOTER_Set_PhysicalParam(ESCOOTER_Physical_State_t *motorParam);
 
 void ESCOOTER_Driving_Start();
 

@@ -9,4 +9,4 @@
 ../ESCOOTER/ESCOOTER_MainTask.c:120:6:ESCOOTER_DRIVING_CONTROL	8	static
 ../ESCOOTER/ESCOOTER_MainTask.c:140:13:ESCOOTER_StateMachineHighFrequencyTask	32	static
 ../ESCOOTER/ESCOOTER_MainTask.c:224:6:ESCOOTER_ParameterMonitoring	24	static
-../ESCOOTER/ESCOOTER_MainTask.c:237:6:ESCOOTER_Stop_Driving_Task	8	static
+../ESCOOTER/ESCOOTER_MainTask.c:238:6:ESCOOTER_Stop_Driving_Task	8	static

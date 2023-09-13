@@ -10,29 +10,43 @@
 #include "mc_api.h"
 #include "main.h"
 
-ESCOOTER_Driving_State Driving_State;
-ESCOOTER_BrakeANDThrottleInput modeControl;
+ESCOOTER_Driving_State_t Driving_State;
+ESCOOTER_BrakeANDThrottleInput_t modeControl;
+ESCOOTER_Physical_State_t motorStatus;
+
 void ESCOOTER_saveStatus (uint8_t state)
 {
 	  Driving_State = state;
 }
 
-ESCOOTER_Driving_State ESCOOTER_getStatus()
+ESCOOTER_Driving_State_t ESCOOTER_getStatus()
 {
 	return Driving_State;
 }
 
-void ESCOOTER_Set_Limit(ESCOOTER_BrakeANDThrottleInput *limitHandle)
+void ESCOOTER_Set_Limit(ESCOOTER_BrakeANDThrottleInput_t *limitHandle)
 {
      modeControl = *limitHandle;
 }
 
+void ESCOOTER_Set_PhysicalParam(ESCOOTER_Physical_State_t *motorParam)
+{
+     motorStatus = *motorParam;
+}
+
 int16_t throttle_Current = 0;
+int16_t current_limits = 0;
+int16_t speed_limits = 0;
+uint16_t ramping = 0;
 void ESCOOTER_Driving_Start()
 {
 	HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin,GPIO_PIN_SET);
 	/*Set acceleration ramp*/
 	throttle_Current = modeControl.TARGET_IQ;
+	/*Those parameters will be used as Cruise Control*/
+	current_limits = modeControl.IQ_LIMIT;
+	speed_limits = modeControl.SPEED_LIMIT;
+	ramping = modeControl.RAMP_DURATION;
 }
 
 void ESCOOTER_Driving_Stop()

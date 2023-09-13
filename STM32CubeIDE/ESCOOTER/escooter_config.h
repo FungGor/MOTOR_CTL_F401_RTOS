@@ -22,11 +22,11 @@ typedef enum
 	BRAKE_AND_THROTTLE_SPEED_MODE_SPORTS   = 2
 }EScooter_Driving_Mode;
 
-void ESCOOTER_DrivingModeSetDefault(ESCOOTER_BrakeANDThrottleInput *limit);
+void ESCOOTER_DrivingModeSetDefault(ESCOOTER_BrakeANDThrottleInput_t *limit);
 
-void ESCOOTER_ConfigDrivingMode(ESCOOTER_BrakeANDThrottleInput *limit,int16_t max_IQ, int16_t allowable_rpm, uint16_t acceleration_ramp);
+void ESCOOTER_ConfigDrivingMode(ESCOOTER_BrakeANDThrottleInput_t *limit,int16_t max_IQ, int16_t allowable_rpm, uint16_t acceleration_ramp);
 
-void ESCOOTER_DetermineDrivingMode(ESCOOTER_BrakeANDThrottleInput *limit);
+void ESCOOTER_DetermineDrivingMode(ESCOOTER_BrakeANDThrottleInput_t *limit);
 
 #ifdef __cplusplus
 }

@@ -18,7 +18,7 @@ ESCOOTER/escooter_config.o: ../ESCOOTER/escooter_config.c \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- ../ESCOOTER/ESCOOTER_DRIVING.h
+ ../ESCOOTER/ESCOOTER_DRIVING.h ../ESCOOTER/ESCOOTER_MonitorTask.h
 ../ESCOOTER/escooter_config.h:
 ../ESCOOTER/ESCOOTER_BrakeAndThrottle.h:
 ../ESCOOTER/ESCOOTER_MainTask.h:
@@ -40,3 +40,4 @@ ESCOOTER/escooter_config.o: ../ESCOOTER/escooter_config.c \
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
 ../ESCOOTER/ESCOOTER_DRIVING.h:
+../ESCOOTER/ESCOOTER_MonitorTask.h:

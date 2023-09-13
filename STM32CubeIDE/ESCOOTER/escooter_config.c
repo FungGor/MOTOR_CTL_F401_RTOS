@@ -10,7 +10,7 @@
 EScooter_Driving_Mode driving_mode;
 
 /*Static + Default*/
-void ESCOOTER_DrivingModeSetDefault(ESCOOTER_BrakeANDThrottleInput *limit)
+void ESCOOTER_DrivingModeSetDefault(ESCOOTER_BrakeANDThrottleInput_t *limit)
 {
    limit->TARGET_IQ = 0;
    limit->IQ_LIMIT = 6500;
@@ -20,11 +20,12 @@ void ESCOOTER_DrivingModeSetDefault(ESCOOTER_BrakeANDThrottleInput *limit)
 }
 
 /*Dynamic*/
-void ESCOOTER_ConfigDrivingMode(ESCOOTER_BrakeANDThrottleInput *limit,int16_t max_IQ, int16_t allowable_rpm, uint16_t acceleration_ramp)
+void ESCOOTER_ConfigDrivingMode(ESCOOTER_BrakeANDThrottleInput_t *limit,int16_t max_IQ, int16_t allowable_rpm, uint16_t acceleration_ramp)
 {
 	/*Triggered by Dashboard's commands! Configure the driving mode by adjusting the current, speed and acceleration ramp limits*/
 	/*Save those parameters in form of &inputHandle pointer*/
-	limit->TARGET_IQ = 0;
+	/*The Motor must stop running when user configures the driveing mode! */
+	limit->TARGET_IQ = 0; /*The Target Iq must be 0 --> Motor Stops Running*/
 	limit->IQ_LIMIT = max_IQ;
 	limit->SPEED_LIMIT = allowable_rpm;
 	limit->RAMP_DURATION = acceleration_ramp;
@@ -34,7 +35,7 @@ void ESCOOTER_ConfigDrivingMode(ESCOOTER_BrakeANDThrottleInput *limit,int16_t ma
 
 }
 
-void ESCOOTER_DetermineDrivingMode(ESCOOTER_BrakeANDThrottleInput *limit)
+void ESCOOTER_DetermineDrivingMode(ESCOOTER_BrakeANDThrottleInput_t *limit)
 {
 	int16_t max_Current[3] = {6500,11450,15750};
 	int16_t max_RPM[3]     = {270,480,663};
